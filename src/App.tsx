@@ -6,6 +6,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
+// Placeholder components for routes that will be created later
+const About = () => <div>About Page - Coming Soon</div>;
+const History = () => <div>History Page - Coming Soon</div>;
+const Organization = () => <div>Organization Page - Coming Soon</div>;
+const Message = () => <div>CEO Message Page - Coming Soon</div>;
+const Certifications = () => <div>Certifications Page - Coming Soon</div>;
+const Partners = () => <div>Partners Page - Coming Soon</div>;
+const Products = () => <div>Products Page - Coming Soon</div>;
+const Projects = () => <div>Projects Page - Coming Soon</div>;
+const Certificates = () => <div>Certificates Page - Coming Soon</div>;
+const Contact = () => <div>Contact Page - Coming Soon</div>;
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -16,7 +28,24 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          
+          {/* About Us Section */}
+          <Route path="/about" element={<About />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/organization" element={<Organization />} />
+          <Route path="/message" element={<Message />} />
+          <Route path="/certifications" element={<Certifications />} />
+          <Route path="/partners" element={<Partners />} />
+          
+          {/* Products Section */}
+          <Route path="/products/:category" element={<Products />} />
+          
+          {/* Other Main Pages */}
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/certificates" element={<Certificates />} />
+          <Route path="/contact" element={<Contact />} />
+          
+          {/* Catch-all */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

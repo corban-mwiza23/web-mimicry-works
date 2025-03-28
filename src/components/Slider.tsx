@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -32,23 +32,56 @@ const slides = [
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [animating, setAnimating] = useState(false);
+  const [slideDirection, setSlideDirection] = useState("next");
+  const slideTimerRef = useRef<number | null>(null);
   
   const nextSlide = () => {
+    if (animating) return;
+    
+    setAnimating(true);
+    setSlideDirection("next");
     setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    
+    setTimeout(() => {
+      setAnimating(false);
+    }, 600); // Match this with the CSS transition duration
   };
   
   const prevSlide = () => {
+    if (animating) return;
+    
+    setAnimating(true);
+    setSlideDirection("prev");
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    
+    setTimeout(() => {
+      setAnimating(false);
+    }, 600); // Match this with the CSS transition duration
+  };
+  
+  const goToSlide = (index: number) => {
+    if (animating || index === currentSlide) return;
+    
+    setAnimating(true);
+    setSlideDirection(index > currentSlide ? "next" : "prev");
+    setCurrentSlide(index);
+    
+    setTimeout(() => {
+      setAnimating(false);
+    }, 600);
   };
   
   // Auto-advance slides
   useEffect(() => {
-    const timer = setInterval(() => {
+    slideTimerRef.current = window.setInterval(() => {
       nextSlide();
     }, 5000);
     
     return () => {
-      clearInterval(timer);
+      if (slideTimerRef.current) {
+        clearInterval(slideTimerRef.current);
+      }
     };
   }, []);
   
@@ -59,8 +92,12 @@ const Slider = () => {
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"
+            className={`absolute inset-0 transition-all duration-600 ease-in-out ${
+              index === currentSlide 
+                ? "opacity-100 transform translate-y-0" 
+                : slideDirection === "next"
+                  ? "opacity-0 transform translate-y-full pointer-events-none"
+                  : "opacity-0 transform -translate-y-full pointer-events-none"
             }`}
           >
             {/* Background Image */}
@@ -74,11 +111,23 @@ const Slider = () => {
             {/* Content */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="container mx-auto px-4 text-center">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">{slide.title}</h2>
-                <p className="text-xl text-white max-w-2xl mx-auto mb-8">{slide.description}</p>
-                <Button size="lg" asChild>
-                  <a href={slide.ctaLink}>{slide.ctaText}</a>
-                </Button>
+                <h2 className={`text-4xl md:text-5xl font-bold text-white mb-4 transition-all duration-300 ${
+                  index === currentSlide ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-10"
+                }`}>
+                  {slide.title}
+                </h2>
+                <p className={`text-xl text-white max-w-2xl mx-auto mb-8 transition-all duration-300 delay-100 ${
+                  index === currentSlide ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-10"
+                }`}>
+                  {slide.description}
+                </p>
+                <div className={`transition-all duration-300 delay-200 ${
+                  index === currentSlide ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-10"
+                }`}>
+                  <Button size="lg" asChild>
+                    <a href={slide.ctaLink}>{slide.ctaText}</a>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -91,6 +140,7 @@ const Slider = () => {
         size="icon"
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 text-white hover:bg-black/50 rounded-full h-10 w-10"
         onClick={prevSlide}
+        disabled={animating}
       >
         <ChevronLeft className="h-6 w-6" />
       </Button>
@@ -100,6 +150,7 @@ const Slider = () => {
         size="icon"
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 text-white hover:bg-black/50 rounded-full h-10 w-10"
         onClick={nextSlide}
+        disabled={animating}
       >
         <ChevronRight className="h-6 w-6" />
       </Button>
@@ -109,10 +160,10 @@ const Slider = () => {
         {slides.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full ${
-              index === currentSlide ? "bg-white" : "bg-white/50"
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide ? "bg-white scale-125" : "bg-white/50"
             }`}
-            onClick={() => setCurrentSlide(index)}
+            onClick={() => goToSlide(index)}
           ></button>
         ))}
       </div>
