@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ChevronRight, Award, Briefcase, Users, Globe } from "lucide-react";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Slider from "@/components/Slider";
@@ -28,12 +29,14 @@ const Index = () => {
                 ISAN Engineering Co., Ltd. is a leading technology-driven company dedicated to providing innovative solutions in engineering. 
                 Since our foundation, we have been committed to excellence in engineering design, manufacturing, and after-sales service.
               </p>
-              <Button className="flex items-center gap-2 bg-primary hover:bg-primary/90">
-                Company Profile <ChevronRight className="h-4 w-4" />
+              <Button className="flex items-center gap-2 bg-primary hover:bg-primary/90" asChild>
+                <Link to="/about">
+                  Company Profile <ChevronRight className="h-4 w-4" />
+                </Link>
               </Button>
             </div>
             <div className="md:w-1/2">
-              <div className="relative h-full rounded-lg overflow-hidden">
+              <div className="relative h-full rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 shadow-lg">
                 <AspectRatio ratio={16/9}>
                   <img 
                     src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
@@ -215,7 +218,7 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="border-none shadow-lg">
+            <Card className="border-none shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <CardContent className="p-6 flex flex-col items-center text-center">
                 <div className="bg-primary/10 p-4 rounded-full mb-4">
                   <Award className="h-8 w-8 text-primary" />
@@ -227,7 +230,7 @@ const Index = () => {
               </CardContent>
             </Card>
             
-            <Card className="border-none shadow-lg">
+            <Card className="border-none shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <CardContent className="p-6 flex flex-col items-center text-center">
                 <div className="bg-primary/10 p-4 rounded-full mb-4">
                   <Briefcase className="h-8 w-8 text-primary" />
@@ -239,7 +242,7 @@ const Index = () => {
               </CardContent>
             </Card>
             
-            <Card className="border-none shadow-lg">
+            <Card className="border-none shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <CardContent className="p-6 flex flex-col items-center text-center">
                 <div className="bg-primary/10 p-4 rounded-full mb-4">
                   <Users className="h-8 w-8 text-primary" />
@@ -251,7 +254,7 @@ const Index = () => {
               </CardContent>
             </Card>
             
-            <Card className="border-none shadow-lg">
+            <Card className="border-none shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <CardContent className="p-6 flex flex-col items-center text-center">
                 <div className="bg-primary/10 p-4 rounded-full mb-4">
                   <Globe className="h-8 w-8 text-primary" />
@@ -275,13 +278,13 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="overflow-hidden border-none shadow-md">
+            <Card className="overflow-hidden border-none shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
               <div className="relative">
                 <AspectRatio ratio={16/9}>
                   <img 
                     src="https://images.unsplash.com/photo-1531297484001-80022131f5a1" 
                     alt="Project 1" 
-                    className="object-cover w-full"
+                    className="object-cover w-full transform transition-transform duration-500 hover:scale-110"
                   />
                 </AspectRatio>
               </div>
@@ -290,19 +293,21 @@ const Index = () => {
                 <p className="text-gray-600 mb-4">
                   Comprehensive automation solution for manufacturing facility resulting in 40% efficiency improvement.
                 </p>
-                <Button variant="link" className="p-0 flex items-center gap-1">
-                  View Project <ChevronRight className="h-4 w-4" />
+                <Button variant="link" className="p-0 flex items-center gap-1 transition-colors hover:text-primary" asChild>
+                  <Link to="/projects">
+                    View Project <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
             
-            <Card className="overflow-hidden border-none shadow-md">
+            <Card className="overflow-hidden border-none shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
               <div className="relative">
                 <AspectRatio ratio={16/9}>
                   <img 
                     src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
                     alt="Project 2" 
-                    className="object-cover w-full"
+                    className="object-cover w-full transform transition-transform duration-500 hover:scale-110"
                   />
                 </AspectRatio>
               </div>
@@ -311,19 +316,21 @@ const Index = () => {
                 <p className="text-gray-600 mb-4">
                   Innovative energy monitoring and optimization solution for commercial buildings.
                 </p>
-                <Button variant="link" className="p-0 flex items-center gap-1">
-                  View Project <ChevronRight className="h-4 w-4" />
+                <Button variant="link" className="p-0 flex items-center gap-1 transition-colors hover:text-primary" asChild>
+                  <Link to="/projects">
+                    View Project <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
             
-            <Card className="overflow-hidden border-none shadow-md">
+            <Card className="overflow-hidden border-none shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
               <div className="relative">
                 <AspectRatio ratio={16/9}>
                   <img 
                     src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" 
                     alt="Project 3" 
-                    className="object-cover w-full"
+                    className="object-cover w-full transform transition-transform duration-500 hover:scale-110"
                   />
                 </AspectRatio>
               </div>
@@ -332,16 +339,20 @@ const Index = () => {
                 <p className="text-gray-600 mb-4">
                   Custom-designed control system for precision manufacturing processes.
                 </p>
-                <Button variant="link" className="p-0 flex items-center gap-1">
-                  View Project <ChevronRight className="h-4 w-4" />
+                <Button variant="link" className="p-0 flex items-center gap-1 transition-colors hover:text-primary" asChild>
+                  <Link to="/projects">
+                    View Project <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
           </div>
           
           <div className="text-center mt-10">
-            <Button>
-              View All Projects <ChevronRight className="h-4 w-4 ml-1" />
+            <Button className="group transition-transform hover:scale-105" asChild>
+              <Link to="/projects">
+                View All Projects <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
+              </Link>
             </Button>
           </div>
         </div>
@@ -355,9 +366,11 @@ const Index = () => {
             Contact our team today to discuss how our engineering expertise can help solve your challenges and drive your business forward.
           </p>
           <div className="flex justify-center gap-4">
-            <Button variant="secondary">Contact Us</Button>
-            <Button variant="outline" className="text-white border-white hover:bg-white/10">
-              Request a Quote
+            <Button variant="secondary" className="transition-transform hover:scale-105" asChild>
+              <Link to="/contact">Contact Us</Link>
+            </Button>
+            <Button variant="outline" className="text-white border-white transition-transform hover:scale-105 hover:bg-white/10" asChild>
+              <Link to="/services">Request a Quote</Link>
             </Button>
           </div>
         </div>
