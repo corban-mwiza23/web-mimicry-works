@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -5,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Projects from "./pages/Projects";
+import Services from "./pages/Services";
 
 // Placeholder components for routes that will be created later
 const About = () => <div>About Page - Coming Soon</div>;
@@ -14,7 +17,6 @@ const Message = () => <div>CEO Message Page - Coming Soon</div>;
 const Certifications = () => <div>Certifications Page - Coming Soon</div>;
 const Partners = () => <div>Partners Page - Coming Soon</div>;
 const Products = () => <div>Products Page - Coming Soon</div>;
-const Projects = () => <div>Projects Page - Coming Soon</div>;
 const Certificates = () => <div>Certificates Page - Coming Soon</div>;
 const Contact = () => <div>Contact Page - Coming Soon</div>;
 
@@ -40,8 +42,9 @@ const App = () => (
           {/* Products Section */}
           <Route path="/products/:category" element={<Products />} />
           
-          {/* Other Main Pages */}
+          {/* Main Pages */}
           <Route path="/projects" element={<Projects />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/certificates" element={<Certificates />} />
           <Route path="/contact" element={<Contact />} />
           
