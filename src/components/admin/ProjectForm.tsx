@@ -96,8 +96,16 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onClose }) => {
         description: "The project has been successfully updated.",
       });
     } else {
-      // Add new project
-      addProject(values);
+      // Add new project - Fix: Explicitly cast the values to the required type to ensure all properties are present
+      addProject({
+        title: values.title,
+        category: values.category,
+        client: values.client,
+        location: values.location,
+        completionDate: values.completionDate,
+        image: values.image,
+        description: values.description
+      });
       toast({
         title: "Project added",
         description: "The new project has been successfully added.",

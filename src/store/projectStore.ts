@@ -12,10 +12,13 @@ export interface Project {
   description: string;
 }
 
+// Define what's required when adding a new project (everything except 'id')
+export type NewProject = Omit<Project, 'id'>;
+
 interface ProjectStore {
   projects: Project[];
   setProjects: (projects: Project[]) => void;
-  addProject: (project: Omit<Project, 'id'>) => void;
+  addProject: (project: NewProject) => void;
   updateProject: (id: number, updatedProject: Partial<Project>) => void;
   deleteProject: (id: number) => void;
 }
