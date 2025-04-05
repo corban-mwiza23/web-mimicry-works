@@ -16,7 +16,7 @@ const Projects = () => {
     // Show welcome toast when page loads
     toast({
       title: "Projects",
-      description: "Browse our portfolio of successful engineering projects",
+      description: "Browse our portfolio of successful engineering projects in Dubai",
     });
   }, [toast]);
 
@@ -39,7 +39,7 @@ const Projects = () => {
           <div 
             className="w-full h-full bg-cover bg-center opacity-15"
             style={{ 
-              backgroundImage: "url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158')",
+              backgroundImage: "url('https://images.unsplash.com/photo-1518005020951-eccb494ad742')",
               transform: "translateZ(-10px) scale(2)", 
               backgroundAttachment: "fixed" 
             }}
@@ -47,9 +47,9 @@ const Projects = () => {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-in">Our Projects</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-in">Our Dubai Projects</h1>
             <p className="text-lg text-gray-700 mb-8 animate-fade-in" style={{ animationDelay: "200ms" }}>
-              Explore our portfolio of successful engineering projects across various industries.
+              Explore our portfolio of successful engineering projects across various industries in Dubai.
               ISAN Engineering has delivered excellence in automation, energy solutions, manufacturing, and infrastructure.
             </p>
           </div>
@@ -104,9 +104,9 @@ const Projects = () => {
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-primary/90 to-primary py-16 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Need a Customized Solution?</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Need a Customized Dubai Solution?</h2>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            Our engineering team is ready to help you with your specific project requirements.
+            Our engineering team is ready to help you with your specific project requirements in Dubai.
             Contact us today to discuss your needs.
           </p>
           <Button size="lg" variant="secondary" className="transition-transform hover:scale-105" asChild>

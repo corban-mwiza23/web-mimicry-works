@@ -6,25 +6,25 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const slides = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
-    title: "Engineering Excellence",
-    description: "Providing innovative solutions for complex engineering challenges",
+    image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742",
+    title: "Dubai Engineering Excellence",
+    description: "Providing innovative solutions for Dubai's most complex engineering challenges",
     ctaText: "Our Services",
     ctaLink: "#services"
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-    title: "Global Partners",
-    description: "Working with industry leaders to deliver exceptional results worldwide",
+    image: "https://images.unsplash.com/photo-1496307653780-42ee777d4833",
+    title: "Dubai's Global Partners",
+    description: "Working with industry leaders to deliver exceptional results across Dubai's skyline",
     ctaText: "Our Projects",
     ctaLink: "#projects"
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-    title: "Cutting-Edge Technology",
-    description: "Leveraging advanced technology to transform industries",
+    image: "https://images.unsplash.com/photo-1431576901776-e539bd916ba2",
+    title: "Cutting-Edge Dubai Technology",
+    description: "Leveraging advanced technology to transform Dubai's architectural landscape",
     ctaText: "Learn More",
     ctaLink: "#about"
   },
