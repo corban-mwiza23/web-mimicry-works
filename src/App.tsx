@@ -12,6 +12,9 @@ import Services from "./pages/Services";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Certificates from "./pages/Certificates";
+import ControlSystems from "./pages/products/ControlSystems";
+import EnergySolutions from "./pages/products/EnergySolutions";
 
 // Placeholder components for routes that will be created later
 const About = () => <div>About Page - Coming Soon</div>;
@@ -21,7 +24,6 @@ const Message = () => <div>CEO Message Page - Coming Soon</div>;
 const Certifications = () => <div>Certifications Page - Coming Soon</div>;
 const Partners = () => <div>Partners Page - Coming Soon</div>;
 const Products = () => <div>Products Page - Coming Soon</div>;
-const Certificates = () => <div>Certificates Page - Coming Soon</div>;
 const Contact = () => <div>Contact Page - Coming Soon</div>;
 
 const queryClient = new QueryClient();
@@ -46,6 +48,8 @@ const App = () => (
             
             {/* Products Section */}
             <Route path="/products/:category" element={<Products />} />
+            <Route path="/products/control-systems" element={<ControlSystems />} />
+            <Route path="/products/energy-solutions" element={<EnergySolutions />} />
             
             {/* Main Pages */}
             <Route path="/projects" element={<Projects />} />
