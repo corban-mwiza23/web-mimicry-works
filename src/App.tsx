@@ -15,26 +15,26 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Certificates from "./pages/Certificates";
 import ControlSystems from "./pages/products/ControlSystems";
 import EnergySolutions from "./pages/products/EnergySolutions";
+import About from "./pages/About";
+import History from "./pages/History";
+import Organization from "./pages/Organization";
+import Contact from "./pages/Contact";
 
-// Placeholder components for routes that will be created later
-const About = () => <div>About Page - Coming Soon</div>;
-const History = () => <div>History Page - Coming Soon</div>;
-const Organization = () => <div>Organization Page - Coming Soon</div>;
+// Import remaining placeholder components
 const Message = () => <div>CEO Message Page - Coming Soon</div>;
 const Certifications = () => <div>Certifications Page - Coming Soon</div>;
 const Partners = () => <div>Partners Page - Coming Soon</div>;
 const Products = () => <div>Products Page - Coming Soon</div>;
-const Contact = () => <div>Contact Page - Coming Soon</div>;
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <AuthProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
+    <BrowserRouter>
+      <TooltipProvider>
+        <AuthProvider>
+          <Toaster />
+          <Sonner />
           <Routes>
             <Route path="/" element={<Index />} />
             
@@ -71,9 +71,9 @@ const App = () => (
             {/* Catch-all */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
-      </AuthProvider>
-    </TooltipProvider>
+        </AuthProvider>
+      </TooltipProvider>
+    </BrowserRouter>
   </QueryClientProvider>
 );
 
