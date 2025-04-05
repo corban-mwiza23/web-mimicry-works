@@ -16,6 +16,7 @@ import { useProjectStore, Project } from '@/store/projectStore';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Edit, Trash, Plus, LogIn } from 'lucide-react';
 import ProjectForm from '@/components/admin/ProjectForm';
+import ChatNotifications from '@/components/admin/ChatNotifications';
 
 const AdminDashboard = () => {
   const { isAuthenticated, logout } = useAuth();
@@ -87,6 +88,7 @@ const AdminDashboard = () => {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
           <div className="flex items-center gap-4">
+            <ChatNotifications />
             <Button variant="outline" onClick={handleLogout}>
               <LogIn className="mr-2 h-4 w-4" />
               Logout

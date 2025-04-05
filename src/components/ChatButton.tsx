@@ -4,13 +4,31 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useChatStore } from "@/store/chatStore";
 
 const ChatButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState<{sender: 'user' | 'admin'; text: string}[]>([
-    { sender: 'admin', text: "Hello! How can I help you today?" }
-  ]);
+  const { addMessage } = useChatStore();
+  
+  // Use a fake user ID and name for the front-end user
+  const userId = "user-" + Math.random().toString(36).substring(2, 9);
+  const userName = "Website Visitor";
+  
+  // Get messages for this user
+  const { conversations } = useChatStore();
+  const userConversation = conversations.find(conv => conv.userId === userId);
+  const messages = userConversation?.messages || [
+    {
+      id: 'initial',
+      sender: 'admin',
+      text: "Hello! How can I help you today?",
+      userId,
+      userName,
+      timestamp: new Date(),
+      read: true,
+    }
+  ];
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -19,15 +37,26 @@ const ChatButton = () => {
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     if (message.trim()) {
-      setMessages([...messages, { sender: 'user', text: message }]);
+      // Add the user message to the store
+      addMessage({
+        sender: 'user',
+        text: message,
+        userId,
+        userName,
+        read: false,
+      });
+      
       setMessage("");
       
       // Simulate admin response after a short delay
       setTimeout(() => {
-        setMessages(prev => [...prev, { 
-          sender: 'admin', 
-          text: "Thanks for your message. Our team will get back to you shortly." 
-        }]);
+        addMessage({
+          sender: 'admin',
+          text: "Thanks for your message. Our team will get back to you shortly.",
+          userId,
+          userName,
+          read: true,
+        });
       }, 1000);
     }
   };
@@ -51,7 +80,7 @@ const ChatButton = () => {
             <div className="space-y-3">
               {messages.map((msg, index) => (
                 <div 
-                  key={index} 
+                  key={msg.id || index} 
                   className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div 
