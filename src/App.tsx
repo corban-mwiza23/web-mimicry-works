@@ -1,6 +1,4 @@
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -19,6 +17,7 @@ import About from "./pages/About";
 import History from "./pages/History";
 import Organization from "./pages/Organization";
 import Contact from "./pages/Contact";
+import ChatButton from "./components/ChatButton";
 
 // Import remaining placeholder components
 const Message = () => <div>CEO Message Page - Coming Soon</div>;
@@ -33,8 +32,6 @@ const App = () => (
     <BrowserRouter>
       <TooltipProvider>
         <AuthProvider>
-          <Toaster />
-          <Sonner />
           <Routes>
             <Route path="/" element={<Index />} />
             
@@ -71,6 +68,7 @@ const App = () => (
             {/* Catch-all */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <ChatButton />
         </AuthProvider>
       </TooltipProvider>
     </BrowserRouter>
