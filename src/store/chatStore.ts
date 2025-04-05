@@ -177,6 +177,37 @@ export const useChatStore = create<ChatState>((set) => ({
       read: true,
     };
     
-    return state.addMessage(reply);
+    // Instead of calling addMessage directly, we'll create the message and update the state
+    const id = Math.random().toString(36).substring(2, 9);
+    const timestamp = new Date();
+    const newMessage: ChatMessage = { ...reply, id, timestamp };
+    
+    const existingConversationIndex = state.conversations.findIndex(
+      (conv) => conv.userId === userId
+    );
+
+    if (existingConversationIndex !== -1) {
+      const updatedConversations = [...state.conversations];
+      const conversation = updatedConversations[existingConversationIndex];
+      
+      updatedConversations[existingConversationIndex] = {
+        ...conversation,
+        messages: [...conversation.messages, newMessage],
+        lastMessage: newMessage,
+      };
+      
+      return { conversations: updatedConversations };
+    } else {
+      // This should rarely happen but handling it for completeness
+      const newConversation: ChatConversation = {
+        userId,
+        userName: reply.userName,
+        messages: [newMessage],
+        unreadCount: 0,
+        lastMessage: newMessage,
+      };
+      
+      return { conversations: [...state.conversations, newConversation] };
+    }
   }),
 }));
