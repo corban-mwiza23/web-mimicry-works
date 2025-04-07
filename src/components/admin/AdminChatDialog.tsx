@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useChatStore, ChatConversation } from '@/store/chatStore';
 import { formatDistanceToNow } from 'date-fns';
+import { User } from 'lucide-react';
 
 interface AdminChatDialogProps {
   open: boolean;
@@ -53,7 +54,10 @@ const AdminChatDialog = ({ open, onOpenChange, conversation }: AdminChatDialogPr
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Chat with {currentConversation.userName}</DialogTitle>
+          <DialogTitle className="flex items-center">
+            <User className="h-4 w-4 text-primary mr-2" />
+            Chat with {currentConversation.userName || 'Unknown User'}
+          </DialogTitle>
         </DialogHeader>
         
         <div className="mt-2 flex flex-col h-[400px]">
@@ -71,6 +75,12 @@ const AdminChatDialog = ({ open, onOpenChange, conversation }: AdminChatDialogPr
                         : 'bg-gray-100 text-gray-800'
                     }`}
                   >
+                    {message.sender === 'user' && (
+                      <div className="font-semibold text-xs text-primary mb-1 flex items-center">
+                        <User className="h-3 w-3 mr-1" />
+                        {currentConversation.userName || 'Unknown User'}
+                      </div>
+                    )}
                     <div>{message.text}</div>
                     <div className="text-xs mt-1 opacity-70">
                       {formatDistanceToNow(new Date(message.timestamp), { addSuffix: true })}

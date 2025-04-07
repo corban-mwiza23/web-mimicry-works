@@ -11,7 +11,8 @@ import {
 } from '@/components/ui/card';
 import { 
   MessageSquare, 
-  Bell 
+  Bell, 
+  User
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -85,8 +86,11 @@ const ChatNotifications = () => {
                           }`}
                           onClick={() => handleConversationClick(conversation)}
                         >
-                          <div className="flex justify-between">
-                            <div className="font-medium">{conversation.userName}</div>
+                          <div className="flex justify-between items-center">
+                            <div className="font-medium flex items-center">
+                              <User className="h-4 w-4 text-primary mr-1" /> 
+                              {conversation.userName || 'Unknown User'}
+                            </div>
                             <div className="text-xs text-gray-500">
                               {formatDistanceToNow(new Date(lastMessage.timestamp), { addSuffix: true })}
                             </div>

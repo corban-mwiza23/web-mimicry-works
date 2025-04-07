@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, X } from "lucide-react";
+import { MessageCircle, X, User } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useChatStore } from "@/store/chatStore";
@@ -101,7 +101,10 @@ const ChatButton = () => {
       {isOpen && (
         <Card className="w-80 mb-4 shadow-lg animate-fade-in">
           <CardHeader className="bg-primary text-white p-4 flex flex-row justify-between items-center">
-            <CardTitle className="text-sm font-medium">Chat with Admin</CardTitle>
+            <CardTitle className="text-sm font-medium flex items-center">
+              <User className="h-4 w-4 mr-2" />
+              {hasProvidedName ? `Chat as ${userName}` : 'Start Chatting'}
+            </CardTitle>
             <Button 
               variant="ghost" 
               size="icon" 
@@ -150,6 +153,9 @@ const ChatButton = () => {
                               : 'bg-gray-100 text-gray-800'
                           }`}
                         >
+                          {msg.sender === 'admin' && (
+                            <div className="font-semibold text-xs text-gray-600 mb-1">Admin</div>
+                          )}
                           {msg.text}
                         </div>
                       </div>
