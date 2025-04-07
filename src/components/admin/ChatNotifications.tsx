@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Popover, 
   PopoverContent, 
@@ -24,8 +24,17 @@ const ChatNotifications = () => {
   const { conversations } = useChatStore();
   const [selectedConversation, setSelectedConversation] = useState<ChatConversation | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0); // Add a refresh key to force re-render
 
   const totalUnread = conversations.reduce((sum, conv) => sum + conv.unreadCount, 0);
+
+  // Force component to refresh every few seconds to check for new messages
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRefreshKey(prev => prev + 1);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleConversationClick = (conversation: ChatConversation) => {
     setSelectedConversation(conversation);

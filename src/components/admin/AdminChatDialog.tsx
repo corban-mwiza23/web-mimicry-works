@@ -22,6 +22,10 @@ const AdminChatDialog = ({ open, onOpenChange, conversation }: AdminChatDialogPr
   const [reply, setReply] = useState('');
   const { markConversationAsRead, replyToUser } = useChatStore();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  
+  // Get the current conversation from the store to ensure we have the latest messages
+  const { conversations } = useChatStore();
+  const currentConversation = conversations.find(c => c.userId === conversation.userId) || conversation;
 
   useEffect(() => {
     if (open) {
@@ -30,7 +34,7 @@ const AdminChatDialog = ({ open, onOpenChange, conversation }: AdminChatDialogPr
         scrollToBottom();
       }, 100);
     }
-  }, [open, conversation.userId, markConversationAsRead]);
+  }, [open, conversation.userId, markConversationAsRead, currentConversation.messages.length]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -49,13 +53,13 @@ const AdminChatDialog = ({ open, onOpenChange, conversation }: AdminChatDialogPr
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Chat with {conversation.userName}</DialogTitle>
+          <DialogTitle>Chat with {currentConversation.userName}</DialogTitle>
         </DialogHeader>
         
         <div className="mt-2 flex flex-col h-[400px]">
           <ScrollArea className="flex-1 pr-4">
             <div className="space-y-4">
-              {conversation.messages.map((message) => (
+              {currentConversation.messages.map((message) => (
                 <div 
                   key={message.id} 
                   className={`flex ${message.sender === 'admin' ? 'justify-end' : 'justify-start'}`}
